@@ -280,7 +280,7 @@ module Danger
 
         it 'does not lint deleted files paths' do
           # Danger (4.3.0 at the time of writing) returns deleted files in the
-          # modified fiels array, which kinda makes sense.
+          # modified fields array, which kinda makes sense.
           # At linting time though deleted files should not be linted because
           # they'd result in file not found errors.
           allow(@swiftlint.git).to receive(:added_files).and_return([])

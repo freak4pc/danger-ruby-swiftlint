@@ -125,7 +125,7 @@ module Danger
     # @return [Array] swiftlint issues
     def run_swiftlint(files, options, additional_swiftlint_args)
       files
-        .map { |file| options.merge(path: file) }
+        .map { |file| options.merge(path: "#{file}") }
         .map { |full_options| swiftlint.lint(full_options, additional_swiftlint_args) }
         .reject { |s| s == '' }
         .map { |s| JSON.parse(s).flatten }
@@ -236,7 +236,7 @@ module Danger
       dir = "#{Dir.pwd}/"
       results.each do |r|
         filename = r['file'].gsub(dir, '')
-        send(method, r['reason'], file: filename, line: r['line'])
+        send(method, r['reason'], file: "\"#{filename}\"", line: r['line'])
       end
     end
 
